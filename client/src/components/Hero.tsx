@@ -84,13 +84,14 @@ export default function Hero({ onNavigate }: HeroProps) {
               
               {/* Inner Circle Container */}
               <div className="absolute inset-8 rounded-full overflow-hidden border-2 border-primary shadow-2xl">
-                {/* Placeholder Image - Replace with actual personal photo */}
+                {/* Personal Photo */}
                 <div 
                   className="w-full h-full"
                   style={{
-                    backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663409405171/FQnTAk3vp2KaZTa5XVsb5j/about-developer-WFxzsqYWgk77zhd36wUk2C.webp)',
+                    backgroundImage: 'url(/image3.png)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
                   }}
                 />
                 

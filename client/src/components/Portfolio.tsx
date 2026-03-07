@@ -51,7 +51,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
       link: '#',
     },
     {
-      title: 'Personal Website / Portafolio',
+      title: 'Professional website / Portfolio',
       description: 'Herramienta interactiva para compartir informacion y servicios.',
       tags: ['React', 'TS', 'TailwindCss'],
       image: '/Image1.png',
@@ -67,7 +67,7 @@ export default function Portfolio({ onNavigate }: PortfolioProps) {
 
       <div className="container">
         <div className={`text-center mb-16 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Portafolio</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Portfalio</h2>
           <p className="text-lg text-foreground max-w-2xl mx-auto">
             Explora algunos de mis proyectos más destacados que demuestran mi experiencia y capacidad técnica.
           </p>

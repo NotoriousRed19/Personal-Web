@@ -1,5 +1,6 @@
 import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
+
 interface FooterProps {
   onNavigate: (section: string) => void;
 }
@@ -83,7 +84,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h4 className="font-bold mb-4">Contacto</h4>
             <div className="space-y-3">
               <a 
-                href="mailto:LopezMauricioDev@gmail.com?subject=Asunto%20del%20correo"
+                href="mailto:LopezMauricioDev@gmail.com"
                 className="flex items-center gap-2 hover:text-secondary transition-colors text-sm"
               >
                 <Mail size={16} />
