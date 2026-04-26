@@ -15,23 +15,24 @@ export default function About({ onNavigate }: AboutProps) {
 
       <div className="container">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Image */}
+          
           <div className={`relative transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
-            <div 
-              className="rounded-lg overflow-hidden shadow-lg"
-              style={{
-                backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663409405171/FQnTAk3vp2KaZTa5XVsb5j/about-developer-WFxzsqYWgk77zhd36wUk2C.webp)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                aspectRatio: '1',
-              }}
-            />
+            <div className="rounded-lg overflow-hidden shadow-lg aspect-square">
+              <img 
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663409405171/FQnTAk3vp2KaZTa5XVsb5j/about-developer-WFxzsqYWgk77zhd36wUk2C.webp"
+                alt="Mauricio Lopez - Desarrollador Web Full Stack trabajando en su entorno"
+                loading="lazy"
+                width="800"
+                height="800"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="absolute -bottom-4 -right-4 w-32 h-32 hexagon bg-primary/20 -z-10"></div>
           </div>
 
-          {/* Content */}
           <div className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">Sobre Mí</h2>
+            <span className="section-label">Sobre Mí</span>
+            <h2 className="text-primary mb-6">Mi Enfoque</h2>
             
             <p className="text-lg text-foreground mb-6 leading-relaxed">
               Soy un desarrollador web apasionado con más de 2 años de experiencia creando soluciones digitales 

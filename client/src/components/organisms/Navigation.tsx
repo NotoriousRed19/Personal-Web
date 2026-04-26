@@ -14,7 +14,7 @@ export default function Navigation({ onNavigate }: NavigationProps) {
     { label: 'Sobre Mí', id: 'about' },
     { label: 'Servicios', id: 'services' },
     { label: 'Portafolio', id: 'portfolio' },
-    { label: 'Clientes', id: 'clients' },
+    // { label: 'Clientes', id: 'clients' },
     { label: 'Tecnologías', id: 'technologies' },
   ];
 
@@ -55,6 +55,8 @@ export default function Navigation({ onNavigate }: NavigationProps) {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={isOpen}
           className="md:hidden p-2 hover:bg-muted rounded-sm transition-colors"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}

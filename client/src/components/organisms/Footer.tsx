@@ -91,10 +91,10 @@ export default function Footer({ onNavigate }: FooterProps) {
                 LopezMauriciodev@gmail.com
               </a>
               <div className="flex gap-3 pt-2">
-                <a href="https://github.com/NotoriousRed19" target='_blank' rel='noopener' className="hover:text-secondary transition-colors">
+                <a href="https://github.com/NotoriousRed19" target='_blank' rel='noopener' aria-label="Perfil de GitHub" className="hover:text-secondary transition-colors">
                   <Github size={20} />
                 </a>
-                <a href="https://www.linkedin.com/in/mauricio-lopez-578a75331/?trk=public-profile-join-page" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">
+                <a href="https://www.linkedin.com/in/mauricio-lopez-578a75331/?trk=public-profile-join-page" target="_blank" rel="noopener noreferrer" aria-label="Perfil de LinkedIn" className="hover:text-secondary transition-colors">
                   <Linkedin size={20} />
                 </a>
               </div>

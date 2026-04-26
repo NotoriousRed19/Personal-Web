@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { techCategories } from '@/data/technologies';
 
 interface TechnologiesProps {
   onNavigate: (section: string) => void;
@@ -19,42 +20,6 @@ export default function Technologies({ onNavigate }: TechnologiesProps) {
     Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
-  const techCategories = [
-    {
-      category: 'Frontend',
-      technologies: [
-        { name: 'React', icon: '⚛️' },
-        { name: 'Next.js', icon: '▲' },
-        { name: 'TypeScript', icon: '📘' },
-        { name: 'Tailwind CSS', icon: '🎨' },
-        { name: 'Framer Motion', icon: '✨' },
-        { name: 'Redux', icon: '🔴' },
-      ],
-    },
-    {
-      category: 'Backend',
-      technologies: [
-        { name: 'Node.js', icon: '🟢' },
-        { name: 'Express', icon: '⚡' },
-        { name: 'PostgreSQL', icon: '🐘' },
-        { name: 'MongoDB', icon: '🍃' },
-        { name: 'REST API', icon: '🔗' },
-        { name: 'GraphQL', icon: '📊' },
-      ],
-    },
-    {
-      category: 'DevOps & Tools',
-      technologies: [
-        { name: 'Docker', icon: '🐳' },
-        { name: 'Git', icon: '📦' },
-        { name: 'CI/CD', icon: '🔄' },
-        { name: 'AWS', icon: '☁️' },
-        { name: 'Vercel', icon: '▲' },
-        { name: 'Linux', icon: '🐧' },
-      ],
-    },
-  ];
-
   return (
     <section id="technologies" className="py-20 md:py-32 bg-card relative overflow-hidden" ref={ref}>
       {/* Decorative Elements */}
@@ -64,7 +29,8 @@ export default function Technologies({ onNavigate }: TechnologiesProps) {
       <div className="container">
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Tecnologías</h2>
+          <span className="section-label">Tecnologías</span>
+          <h2 className="text-primary mb-4">Mi Stack de Trabajo</h2>
           <p className="text-lg text-foreground max-w-2xl mx-auto">
             Utilizo las herramientas y tecnologías más modernas para construir soluciones robustas y escalables.
           </p>

@@ -1,24 +1,54 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Web Development Mauricio Lopez</title>    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+    <meta name="description" content="Mauricio Lopez - Desarrollador Web Full Stack especializado en crear experiencias digitales innovadoras, responsivas y de alto rendimiento." />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SantanaDev — Mauricio Lopez | Desarrollo Web" />
+    <meta property="og:description" content="Transformo ideas en soluciones digitales innovadoras. Desarrollo web Frontend, Backend y UI/UX." />
+    <meta property="og:image" content="/image3.png" />
+    
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="https://d2xsxph8kpxj0f.cloudfront.net/310519663409405171/FQnTAk3vp2KaZTa5XVsb5j/hero-circuit-abstract-ENXgGrgWB2froAkNCjyEux.webp" />
+
+    <title>SantanaDev — Mauricio Lopez | Desarrollo Web</title>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "SantanaDev - Mauricio Lopez",
+      "image": "/image3.png",
+      "description": "Desarrollador Web Full Stack especializado en la creación de aplicaciones web escalables y de alto rendimiento.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Remoto"
+      },
+      "priceRange": "$$",
+      "sameAs": [
+        "https://github.com/SushiTrash"
+      ]
+    }
+    </script>
   </head>
 
-  <body>
-    <div id="root"></div>
+  <body style="background-color: #1a5f5f; margin: 0;">
+    <div id="root">
+      <!-- Pre-render Skeleton for instant FCP -->
+      <div style="height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; background-color: #e8e4d9;">
+        <div style="width: 40px; height: 40px; border: 3px solid #1a5f5f; border-bottom-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+      </div>
+      <style>
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+      </style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
   </body>
 
 </html>

@@ -12,7 +12,6 @@ export default function Hero({ onNavigate }: HeroProps) {
 
   return (
     <section id="hero" className="relative min-h-screen pt-20 flex items-center overflow-hidden" ref={parallaxRef}>
-      {/* Background Image with Parallax Effect */}
       <div 
         className="absolute inset-0 z-0"
         style={{
@@ -24,20 +23,25 @@ export default function Hero({ onNavigate }: HeroProps) {
           transition: 'transform 0.1s ease-out',
         }}
       >
-        {/* Overlay */}
         <div className="absolute inset-0 bg-background/70"></div>
       </div>
 
-      {/* Content */}
       <div className="container relative z-10 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center" ref={contentRef}>
-          {/* Left Content */}
           <div className={`max-w-2xl transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
-            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 leading-tight">
-              Desarrollo Web de Clase Mundial
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-10 h-10 hexagon bg-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-sm">SD</span>
+              </div>
+              <span className="text-2xl font-bold text-primary">SantanaDev</span>
+            </div>
+            
+            <h1 className="text-primary mb-6 leading-tight text-6xl md:text-8xl">
+              Desarrollo Web de <br />
+              <span className="text-gradient">Clase Mundial</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed max-w-xl font-bold [text-shadow:_0_1px_2px_rgba(0,0,0,0.1)]">
               Transformo ideas en soluciones digitales innovadoras. Especializado en crear experiencias web modernas, 
               responsivas y de alto rendimiento que impulsan el crecimiento de tu negocio.
             </p>
@@ -58,25 +62,8 @@ export default function Hero({ onNavigate }: HeroProps) {
                 Ver Portafolio
               </button>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border">
-              <div className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '0.2s' }}>
-                <div className="text-3xl md:text-4xl font-bold text-primary">50+</div>
-                <p className="text-sm md:text-base text-muted-foreground mt-2">Proyectos Completados</p>
-              </div>
-              <div className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '0.4s' }}>
-                <div className="text-3xl md:text-4xl font-bold text-primary">30+</div>
-                <p className="text-sm md:text-base text-muted-foreground mt-2">Clientes Satisfechos</p>
-              </div>
-              <div className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '0.6s' }}>
-                <div className="text-3xl md:text-4xl font-bold text-primary">2+</div>
-                <p className="text-sm md:text-base text-muted-foreground mt-2">Años de Experiencia</p>
-              </div>
-            </div>
           </div>
 
-          {/* Right Content - Stylized Circle with Image */}
           <div className={`hidden md:flex justify-center items-center transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
             <div className="relative w-80 h-80">
               {/* Outer Hexagon Border */}
@@ -141,7 +128,6 @@ export default function Hero({ onNavigate }: HeroProps) {
         </div>
       </div>
 
-      {/* Decorative Elements */}
       <div className="absolute top-20 right-10 w-32 h-32 hexagon bg-primary/10 animate-float"></div>
       <div className="absolute bottom-32 left-10 w-24 h-24 hexagon bg-secondary/10 animate-float" style={{ animationDelay: '1s' }}></div>
     </section>
