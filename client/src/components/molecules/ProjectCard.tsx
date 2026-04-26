@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, Github, Eye, Layout } from 'lucide-react';
+import { ExternalLink, Eye, Layout } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -80,12 +80,6 @@ export default function ProjectCard({ project, isInView, delay }: ProjectCardPro
           >
             Ver Proyecto
             <ExternalLink size={16} />
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-semibold text-sm"
-          >
-            <Github size={16} />
           </a>
         </div>
       </div>
