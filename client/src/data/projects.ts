@@ -1,7 +1,7 @@
 export const projects = [
   {
     title: 'GN Perfumes Shop',
-    description: 'E-commerce premium de perfumería con una experiencia de usuario sofisticada, sistema de gestión de catálogo y pasarela de pagos integrada para una marca de fragancias exclusivas.',
+    description: 'E-commerce premium de perfumería con una experiencia de usuario sofisticada, sistema de gestión de catálogo y sistema de pedidos optimizado para una marca de fragancias exclusivas.',
     tags: ['React', 'Tailwind CSS', 'Supabase'],
     image: '/screenshots/gnperfumes_hero.png',
     catalogImage: '/screenshots/gnperfumes_catalog.png',
@@ -14,5 +14,13 @@ export const projects = [
     image: '/screenshots/tefaltacalle_hero.png',
     catalogImage: '/screenshots/tefaltacalle_catalog.png',
     link: 'https://tefaltacalle.vercel.app/',
+  },
+  {
+    title: 'Cognify (Under Construction)',
+    description: 'SaaS de gestión integral para profesionales de la salud mental. Simplifica la administración de citas, expedientes y seguimiento de pacientes en una plataforma segura y moderna.',
+    tags: ['Next.js', 'React', 'Tailwind', 'Supabase'],
+    image: '/screenshots/cognify_hero.png',
+    catalogImage: '/screenshots/cognify_dashboard.png',
+    link: 'https://cognify-orpin.vercel.app/',
   },
 ];
