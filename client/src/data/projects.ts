@@ -23,4 +23,12 @@ export const projects = [
     catalogImage: '/screenshots/cognify_dashboard.png',
     link: 'https://cognify-orpin.vercel.app/',
   },
+  {
+    title: 'RestKardex (Sistema de gestion de inventarios)',
+    description: 'Sistema integral de gestión de inventarios para restaurantes. Control de stock, estandarización de recetas, mermas y costeo en tiempo real. Plataforma escalable, modificable y disponible para venta.',
+    tags: ['React', 'Next.js', 'Tailwind', 'Supabase'],
+    image: '/screenshots/restkardex_hero.png',
+    catalogImage: '/screenshots/restkardex_catalog.png',
+    link: 'https://rest-kardex-5m4z.vercel.app/',
+  },
 ];
