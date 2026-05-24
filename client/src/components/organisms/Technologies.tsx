@@ -1,126 +1,147 @@
-import { useRef } from 'react';
-import { useInView } from '@/hooks/useInView';
-import Autoplay from "embla-carousel-autoplay";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { motion, type Variants } from 'framer-motion';
 import { techCategories } from '@/data/technologies';
+import { techIconMap } from '@/components/molecules/TechIcon';
 
 interface TechnologiesProps {
   onNavigate: (section: string) => void;
 }
 
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 20 } },
+};
+
+// All tech names for marquee
+const allTechs = techCategories.flatMap(c => c.technologies);
+
 export default function Technologies({ onNavigate }: TechnologiesProps) {
-  const { ref, isInView } = useInView();
-  const plugin = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
-
   return (
-    <section id="technologies" className="py-20 md:py-32 bg-card relative overflow-hidden" ref={ref}>
-      {/* Decorative Elements */}
-      <div className="absolute top-10 right-5 w-40 h-40 hexagon bg-primary/5 -z-10"></div>
-      <div className="absolute bottom-10 left-5 w-32 h-32 hexagon bg-secondary/5 -z-10"></div>
-
+    <section id="technologies" className="py-24 md:py-36 bg-background relative overflow-hidden">
       <div className="container">
         {/* Header */}
-        <div className={`text-center mb-16 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ type: 'spring', stiffness: 80, damping: 20 }}
+          className="mb-16 max-w-xl"
+        >
           <span className="section-label">Tecnologías</span>
-          <h2 className="text-primary mb-4">Mi Stack de Trabajo</h2>
-          <p className="text-lg text-foreground max-w-2xl mx-auto">
-            Utilizo las herramientas y tecnologías más modernas para construir soluciones robustas y escalables.
+          <h2 className="mb-4">Mi Stack de Trabajo</h2>
+          <p className="text-lg text-muted-foreground">
+            Herramientas y tecnologías modernas para construir soluciones robustas y escalables.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Tech Stack Carousel */}
-        <div className={`mb-24 md:px-12 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.5s' }}>
-          <Carousel
-            plugins={[plugin.current]}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-4">
-              {techCategories.flatMap(c => c.technologies).map((tech, index) => (
-                <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                  <div className="h-full p-6 bg-background rounded-2xl border border-border flex flex-col items-center justify-center  transition-all duration-300 shadow-sm group">
-                    <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                      {tech.icon}
-                    </div>
-                    <span className="font-bold text-primary text-center">{tech.name}</span>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
-        </div>
-
-        {/* Technologies Grid */}
-        <div className="grid md:grid-cols-3 gap-12">
-          {techCategories.map((category, categoryIndex) => {
-            const delay = 0.4 + (categoryIndex * 0.15);
-            return (
-              <div
-                key={categoryIndex}
-                className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ transitionDelay: `${delay}s` }}
-              >
-                <h3 className="text-2xl font-bold text-primary mb-8 flex items-center gap-3">
-                  <div className="w-8 h-8 hexagon bg-primary"></div>
-                  {category.category}
-                </h3>
-
-                <div className="grid grid-cols-2 gap-4">
-                  {category.technologies.map((tech, techIndex) => (
-                    <div
-                      key={techIndex}
-                      className="p-4 bg-background rounded-lg border border-border hover-lift hover-scale transition-all duration-300 text-center group"
-                    >
-                      <div className="text-3xl mb-2 group-hover:scale-125 transition-transform duration-300">
-                        {tech.icon}
-                      </div>
-                      <p className="font-semibold text-primary text-sm">{tech.name}</p>
-                    </div>
-                  ))}
+        {/* Infinite Marquee — GPU-optimized */}
+        <div className="mb-20 -mx-4 md:-mx-8 overflow-hidden">
+          <div className="flex animate-marquee hover:[animation-play-state:paused]">
+            {/* Duplicate for seamless loop */}
+            {[...allTechs, ...allTechs].map((tech, index) => {
+              const IconComponent = techIconMap[tech.name];
+              return (
+                <div
+                  key={`${tech.name}-${index}`}
+                  className="flex-shrink-0 mx-3 px-6 py-4 bg-card rounded-xl border border-border/40 flex items-center gap-3 hover:border-accent/30 transition-colors duration-300 group"
+                >
+                  {IconComponent && (
+                    <span className="text-muted-foreground group-hover:text-accent transition-colors duration-300">
+                      <IconComponent size={24} />
+                    </span>
+                  )}
+                  <span className="font-semibold text-foreground text-sm whitespace-nowrap">{tech.name}</span>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
-        {/* Skills Summary */}
-        <div className="mt-20 pt-20 border-t border-border grid md:grid-cols-3 gap-8">
-          <div className={`text-center transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.85s' }}>
-            <div className="text-4xl font-bold text-primary mb-2">15+</div>
-            <p className="text-foreground">Lenguajes y Frameworks</p>
+        {/* Categories Grid — asymmetric 2fr 1fr 1fr */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid md:grid-cols-3 gap-12"
+        >
+          {techCategories.map((category) => (
+            <motion.div key={category.category} variants={fadeInUp}>
+              <h3 className="text-xl font-bold text-primary mb-6 flex items-center gap-3">
+                <div className="w-1.5 h-6 bg-accent rounded-full" />
+                {category.category}
+              </h3>
+
+              <div className="space-y-3">
+                {category.technologies.map((tech) => {
+                  const IconComponent = techIconMap[tech.name];
+                  return (
+                    <div
+                      key={tech.name}
+                      className="flex items-center gap-3 px-4 py-3 bg-card rounded-xl border border-border/40 hover:border-accent/30 transition-all duration-300 group"
+                    >
+                      {IconComponent && (
+                        <span className="text-muted-foreground group-hover:text-accent transition-colors duration-300">
+                          <IconComponent size={20} />
+                        </span>
+                      )}
+                      <span className="font-semibold text-foreground text-sm">{tech.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, type: 'spring', stiffness: 80, damping: 20 }}
+          className="mt-20 pt-16 border-t border-border/40 grid grid-cols-3 gap-8"
+        >
+          <div className="text-center">
+            <div className="text-3xl font-extrabold text-primary mb-1" style={{ fontFamily: "'Georama', system-ui" }}>18</div>
+            <p className="text-muted-foreground text-sm">Frameworks & Lenguajes</p>
           </div>
-          <div className={`text-center transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.95s' }}>
-            <div className="text-4xl font-bold text-primary mb-2">20+</div>
-            <p className="text-foreground">Herramientas y Plataformas</p>
+          <div className="text-center">
+            <div className="text-3xl font-extrabold text-primary mb-1" style={{ fontFamily: "'Georama', system-ui" }}>23</div>
+            <p className="text-muted-foreground text-sm">Herramientas & Plataformas</p>
           </div>
-          <div className={`text-center transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '1.05s' }}>
-            <div className="text-4xl font-bold text-primary mb-2">100%</div>
-            <p className="text-foreground">Dedicación a la Calidad</p>
+          <div className="text-center">
+            <div className="text-3xl font-extrabold text-primary mb-1" style={{ fontFamily: "'Georama', system-ui" }}>2+</div>
+            <p className="text-muted-foreground text-sm">Años Trabajando</p>
           </div>
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className={`mt-16 text-center transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '1.15s' }}>
-          <p className="text-lg text-foreground mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, type: 'spring', stiffness: 80, damping: 20 }}
+          className="mt-12 flex flex-col items-center justify-center text-center"
+        >
+          <p className="text-foreground font-semibold mb-6">
             ¿Necesitas una tecnología específica?
           </p>
-          <a href="https://wa.me/+584246270071?text=Hola%20necesito%20mas%20informacion%20sobre%20las%20tecnologias!" target="_blank" rel="noopener noreferrer" className="px-8 py-3 border-2 border-primary text-primary rounded-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+          <a
+            href="https://wa.me/+584246270071?text=Hola%20necesito%20mas%20informacion%20sobre%20las%20tecnologias!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-3.5 bg-primary text-primary-foreground rounded-lg font-bold text-base hover-tactile"
+          >
             Contactar
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

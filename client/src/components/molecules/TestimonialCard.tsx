@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react';
+import { Star } from '@phosphor-icons/react';
 
 interface TestimonialCardProps {
   testimonial: {
@@ -21,7 +21,7 @@ export default function TestimonialCard({ testimonial, isInView, delay }: Testim
       {/* Rating */}
       <div className="flex gap-1 mb-4">
         {[...Array(testimonial.rating)].map((_, i) => (
-          <Star key={i} size={16} className="fill-primary text-primary" />
+          <Star key={i} size={16} weight="fill" className="text-primary" />
         ))}
       </div>
 

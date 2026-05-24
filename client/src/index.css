@@ -4,24 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ═══════════════════════════════════════════
-   FONT DECLARATIONS — Local Georama Variable
+   FONT CONFIGURATION — Georama (Headings) + Satoshi (Body)
+   (Loaded via CDN in index.html)
    ═══════════════════════════════════════════ */
-
-@font-face {
-  font-family: 'Georama';
-  src: url('/fonts/Georama-VariableFont_wdth,wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Georama';
-  src: url('/fonts/Georama-Italic-VariableFont_wdth,wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -60,98 +45,107 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-
-  --animate-gradient-flow: gradient-flow 6s linear infinite;
-  @keyframes gradient-flow {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
-  }
 }
 
+/* ═══════════════════════════════════════════
+   LIGHT THEME — Warm Cream + Deep Teal
+   Accent: Emerald-shifted teal for contrast
+   ═══════════════════════════════════════════ */
 :root {
-  /* Design System: Futurismo Técnico Minimalista
-     Primary: Teal oscuro (#1a5f5f) - confianza, tecnología, estabilidad
-     Secondary: Beige/Crema (#e8e4d9) - sofisticación, profesionalismo
-     Accent: Teal claro (#2d8a8a) - elementos interactivos
-  */
-  --primary: #1a5f5f;
-  --primary-foreground: #e8e4d9;
-  --sidebar-primary: #1a5f5f;
-  --sidebar-primary-foreground: #e8e4d9;
-  --chart-1: #2d8a8a;
-  --chart-2: #1a5f5f;
-  --chart-3: #0f3d3d;
-  --chart-4: #1a5f5f;
-  --chart-5: #2d8a8a;
-  --radius: 0.5rem;
-  --background: #e8e4d9;
-  --foreground: #1a5f5f;
-  --card: #f5f3f0;
-  --card-foreground: #1a5f5f;
-  --popover: #f5f3f0;
-  --popover-foreground: #1a5f5f;
-  --secondary: #2d8a8a;
-  --secondary-foreground: #e8e4d9;
-  --muted: #d4cfc5;
-  --muted-foreground: #5a7a7a;
-  --accent: #2d8a8a;
-  --accent-foreground: #e8e4d9;
-  --destructive: #dc2626;
-  --destructive-foreground: #f5f3f0;
-  --border: #c9c0b5;
-  --input: #f5f3f0;
-  --ring: #2d8a8a;
-  --sidebar: #f5f3f0;
-  --sidebar-foreground: #1a5f5f;
-  --sidebar-accent: #2d8a8a;
-  --sidebar-accent-foreground: #e8e4d9;
-  --sidebar-border: #c9c0b5;
-  --sidebar-ring: #2d8a8a;
+  --primary: #1b4d4d;
+  --primary-foreground: #f0ede6;
+  --background: #f0ede6;
+  --foreground: #2a3a3a;
+  --card: #f8f6f2;
+  --card-foreground: #2a3a3a;
+  --popover: #f8f6f2;
+  --popover-foreground: #2a3a3a;
+  --secondary: #1b4d4d;
+  --secondary-foreground: #f0ede6;
+  --muted: #e5e0d6;
+  --muted-foreground: #384c4c;
+  --accent: #3d9e8e;
+  --accent-foreground: #f0ede6;
+  --destructive: #c4342d;
+  --destructive-foreground: #f8f6f2;
+  --border: #ddd8d0;
+  --input: #f8f6f2;
+  --ring: #3d9e8e;
+  --radius: 0.625rem;
+
+  --chart-1: #3d9e8e;
+  --chart-2: #1b4d4d;
+  --chart-3: #0f3030;
+  --chart-4: #3d9e8e;
+  --chart-5: #5ab5a5;
+
+  --sidebar: #f8f6f2;
+  --sidebar-foreground: #1b4d4d;
+  --sidebar-primary: #1b4d4d;
+  --sidebar-primary-foreground: #f0ede6;
+  --sidebar-accent: #3d9e8e;
+  --sidebar-accent-foreground: #f0ede6;
+  --sidebar-border: #ddd8d0;
+  --sidebar-ring: #3d9e8e;
 }
 
+/* ═══════════════════════════════════════════
+   DARK THEME — Deep Forest + Luminous Accents
+   Background: Rich forest-black, not pure black
+   Cards: Elevated teal-tinted surfaces
+   ═══════════════════════════════════════════ */
 .dark {
-  --primary: #2d8a8a;
-  --primary-foreground: #e8e4d9;
-  --sidebar-primary: #2d8a8a;
-  --sidebar-primary-foreground: #e8e4d9;
-  --background: #0f1f1f;
-  --foreground: #e8e4d9;
-  --card: #1a3a3a;
-  --card-foreground: #e8e4d9;
-  --popover: #1a3a3a;
-  --popover-foreground: #e8e4d9;
-  --secondary: #1a5f5f;
-  --secondary-foreground: #e8e4d9;
-  --muted: #2d4a4a;
-  --muted-foreground: #a8c5c5;
-  --accent: #2d8a8a;
-  --accent-foreground: #0f1f1f;
-  --destructive: #ff6b6b;
-  --destructive-foreground: #0f1f1f;
-  --border: #2d4a4a;
-  --input: #1a3a3a;
-  --ring: #2d8a8a;
-  --chart-1: #2d8a8a;
-  --chart-2: #1a5f5f;
-  --chart-3: #0f3d3d;
-  --chart-4: #2d8a8a;
-  --chart-5: #3da3a3;
-  --sidebar: #1a3a3a;
-  --sidebar-foreground: #e8e4d9;
-  --sidebar-accent: #2d8a8a;
-  --sidebar-accent-foreground: #0f1f1f;
-  --sidebar-border: #2d4a4a;
-  --sidebar-ring: #2d8a8a;
+  --primary: #5ab5a5;
+  --primary-foreground: #0d1f1f;
+  --background: #0d1a1a;
+  --foreground: #d8ddd8;
+  --card: #142828;
+  --card-foreground: #d8ddd8;
+  --popover: #142828;
+  --popover-foreground: #d8ddd8;
+  --secondary: #3d9e8e;
+  --secondary-foreground: #0d1a1a;
+  --muted: #1e3535;
+  --muted-foreground: #8aada5;
+  --accent: #5ab5a5;
+  --accent-foreground: #0d1a1a;
+  --destructive: #f87171;
+  --destructive-foreground: #0d1a1a;
+  --border: #243d3d;
+  --input: #1e3535;
+  --ring: #5ab5a5;
+
+  --chart-1: #5ab5a5;
+  --chart-2: #3d9e8e;
+  --chart-3: #2a7a6e;
+  --chart-4: #5ab5a5;
+  --chart-5: #7dcec0;
+
+  --sidebar: #142828;
+  --sidebar-foreground: #d8ddd8;
+  --sidebar-primary: #5ab5a5;
+  --sidebar-primary-foreground: #0d1a1a;
+  --sidebar-accent: #3d9e8e;
+  --sidebar-accent-foreground: #0d1a1a;
+  --sidebar-border: #243d3d;
+  --sidebar-ring: #5ab5a5;
 }
 
+/* ═══════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════ */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
-    font-family: 'Georama', system-ui, sans-serif;
+    font-family: 'Satoshi', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -163,77 +157,70 @@
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
-  
-  /* Typography System */
+
+  /* ───── Typography System ─────
+     Headings: Georama (condensed, impactful)
+     Body: Satoshi (clean, modern)
+  */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Georama', system-ui, serif;
+    font-family: 'Georama', system-ui, sans-serif;
     font-weight: 800;
-    font-stretch: 85%; /* Condensed headings for impact */
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-stretch: 85%;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    @apply text-primary;
   }
-  
+
   h1 {
     @apply text-5xl md:text-7xl;
   }
-  
+
   h2 {
-    @apply text-4xl md:text-5xl;
-  }
-  
-  p {
-    @apply text-base md:text-lg leading-relaxed opacity-90;
-    font-weight: 400;
+    @apply text-3xl md:text-5xl;
   }
 
-  .section-label {
-    font-family: 'Georama', system-ui, sans-serif;
+  h3 {
+    @apply text-xl md:text-2xl;
     font-weight: 700;
-    font-stretch: 115%; /* Extra expanded for airiness */
-    text-transform: uppercase;
-    letter-spacing: 0.25em; /* Increased spacing */
-    font-size: 0.7rem;
-    @apply text-secondary mb-4 block;
   }
 
+  p {
+    @apply text-base md:text-lg leading-relaxed;
+    font-weight: 400;
+    color: var(--foreground);
+    max-width: 65ch;
+  }
+
+  /* Section Label — Extra expanded, uppercase, accent */
+  .section-label {
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    @apply text-accent mb-4 block;
+  }
+
+  /* Card Title */
   .card-title {
     font-family: 'Georama', system-ui, sans-serif;
     font-weight: 700;
-    font-stretch: 95%; /* Slightly more open than main headings */
+    font-stretch: 95%;
     letter-spacing: -0.01em;
     @apply text-xl text-primary;
   }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient-flow;
-  }
 }
 
-@keyframes gradient-flow {
-  0% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-  100% { background-position: 0% center; }
-}
-
+/* ═══════════════════════════════════════════
+   COMPONENT UTILITIES
+   ═══════════════════════════════════════════ */
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
+  /* Container */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -244,97 +231,103 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
-  
-  /* Geometric Design Elements */
-  .hexagon {
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  }
-  
-  .angled-edge-top {
-    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
-  }
-  
-  .angled-edge-bottom {
-    clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
-  }
-  
-  /* Animation Classes */
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  
+
+  /* ───── Animations (GPU-optimized: transform + opacity only) ───── */
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(24px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+
   @keyframes slideInLeft {
     from {
       opacity: 0;
-      transform: translateX(-50px);
+      transform: translateX(-40px);
     }
     to {
       opacity: 1;
       transform: translateX(0);
     }
   }
-  
+
   @keyframes slideInRight {
     from {
       opacity: 0;
-      transform: translateX(50px);
+      transform: translateX(40px);
     }
     to {
       opacity: 1;
       transform: translateX(0);
     }
   }
-  
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
-  
+
   .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-  
+
   .animate-slide-in-left {
-    animation: slideInLeft 0.6s ease-out;
+    animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-  
+
   .animate-slide-in-right {
-    animation: slideInRight 0.6s ease-out;
+    animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  /* ───── Hover Effects ───── */
   
-  /* Hover Effects */
+  /* Tactile push-down feedback */
+  .hover-tactile {
+    @apply transition-all duration-200;
+  }
+  .hover-tactile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--primary) 15%, transparent);
+  }
+  .hover-tactile:active {
+    transform: translateY(1px) scale(0.98);
+  }
+
+  /* Subtle lift */
   .hover-lift {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply transition-all duration-300;
   }
-  
-  .hover-scale {
-    @apply transition-transform duration-300 hover:scale-105;
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px -12px color-mix(in srgb, var(--primary) 12%, transparent);
+  }
+
+  /* Theme toggle transition */
+  .theme-transition {
+    @apply transition-colors duration-300;
   }
 }

@@ -1,32 +1,41 @@
-import { Code2, Smartphone, Zap, Database, Palette } from 'lucide-react';
+import { Code, Database, PaintBrush, Lightning } from '@phosphor-icons/react';
+import type { Icon } from '@phosphor-icons/react';
 
-export const services = [
+interface ServiceDef {
+  id: string;
+  icon: Icon;
+  title: string;
+  description: string;
+  color: string;
+}
+
+export const services: ServiceDef[] = [
   {
     id: 'frontend',
-    icon: Code2,
+    icon: Code,
     title: 'Desarrollo Frontend',
-    description: 'Creación de interfaces de usuario modernas, rápidas y responsivas utilizando las últimas tecnologías.',
-    color: 'bg-primary',
+    description: 'Interfaces modernas, rápidas y responsivas construidas con las tecnologías más actuales del ecosistema web.',
+    color: 'bg-primary/10 text-primary',
   },
   {
     id: 'backend',
     icon: Database,
     title: 'Desarrollo Backend',
-    description: 'Construcción de arquitecturas de servidor robustas, escalables y seguras para soportar aplicaciones complejas.',
-    color: 'bg-secondary',
+    description: 'Arquitecturas de servidor robustas y escalables que soportan aplicaciones complejas con seguridad integrada.',
+    color: 'bg-accent/10 text-accent',
   },
   {
     id: 'ui-ux',
-    icon: Palette,
+    icon: PaintBrush,
     title: 'UI/UX Design',
-    description: 'Diseño de experiencias de usuario intuitivas y atractivas que cautivan a tus clientes desde el primer momento.',
-    color: 'bg-primary',
+    description: 'Experiencias de usuario intuitivas y atractivas que guían a tus clientes hacia sus objetivos de forma natural.',
+    color: 'bg-primary/10 text-primary',
   },
   {
     id: 'optimizacion',
-    icon: Zap,
+    icon: Lightning,
     title: 'Optimización Web',
-    description: 'Mejora del rendimiento y SEO de tu sitio web para alcanzar mejores posiciones en los buscadores.',
-    color: 'bg-secondary',
+    description: 'Mejora de rendimiento, Core Web Vitals y SEO para que tu sitio cargue rápido y posicione mejor.',
+    color: 'bg-accent/10 text-accent',
   },
 ];

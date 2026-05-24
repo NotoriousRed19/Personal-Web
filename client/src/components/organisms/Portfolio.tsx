@@ -1,4 +1,4 @@
-import { useInView } from '@/hooks/useInView';
+import { motion, type Variants } from 'framer-motion';
 import { projects } from '@/data/projects';
 import ProjectCard from '@/components/molecules/ProjectCard';
 
@@ -6,39 +6,54 @@ interface PortfolioProps {
   onNavigate: (section: string) => void;
 }
 
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 20 } },
+};
+
 export default function Portfolio({ onNavigate }: PortfolioProps) {
-  const { ref, isInView } = useInView();
-
   return (
-    <section id="portafolio" className="py-20 md:py-32 bg-card relative overflow-hidden" ref={ref}>
-      {/* Decorative Elements */}
-      <div className="absolute top-10 right-5 w-40 h-40 hexagon bg-primary/5 -z-10"></div>
-      <div className="absolute bottom-10 left-5 w-32 h-32 hexagon bg-secondary/5 -z-10"></div>
-
+    <section id="portafolio" className="py-24 md:py-36 bg-card relative overflow-hidden">
       <div className="container">
-        <div className={`text-center mb-16 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Portafolio</h2>
-          <p className="text-lg text-foreground max-w-2xl mx-auto">
-            Explora algunos de mis proyectos más destacados que demuestran mi experiencia y capacidad técnica.
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ type: 'spring', stiffness: 80, damping: 20 }}
+          className="text-center mb-16"
+        >
+          <span className="section-label">Portafolio</span>
+          <h2 className="mb-4">Proyectos Destacados</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Proyectos reales que demuestran mi experiencia y capacidad técnica.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects Grid — Asymmetric with varying sizes */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid md:grid-cols-2 gap-5"
+        >
           {projects.map((project, index) => (
-            <ProjectCard 
-              key={index} 
-              project={project} 
-              isInView={isInView} 
-              delay={index * 0.15} 
+            <ProjectCard
+              key={index}
+              project={project}
+              isWide={index === 0 || index === 3}
+              variants={fadeInUp}
             />
           ))}
-        </div>
-
-        {/* View More */}
-        <div className={`mt-16 text-center transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.9s' }}>
-          
-        </div>
+        </motion.div>
       </div>
     </section>
   );

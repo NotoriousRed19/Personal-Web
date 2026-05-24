@@ -1,135 +1,130 @@
-import { ArrowRight } from 'lucide-react';
-import { useParallax } from '@/hooks/useParallax';
-import { useInView } from '@/hooks/useInView';
+import { ArrowRight } from '@phosphor-icons/react';
+import { motion } from 'framer-motion';
 
 interface HeroProps {
   onNavigate: (section: string) => void;
 }
 
 export default function Hero({ onNavigate }: HeroProps) {
-  const { ref: parallaxRef, offset } = useParallax(0.5);
-  const { ref: contentRef, isInView } = useInView();
-
   return (
-    <section id="hero" className="relative min-h-screen pt-20 flex items-center overflow-hidden" ref={parallaxRef}>
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url(https://d2xsxph8kpxj0f.cloudfront.net/310519663409405171/FQnTAk3vp2KaZTa5XVsb5j/hero-circuit-abstract-ENXgGrgWB2froAkNCjyEux.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          transform: `translateY(${offset * 0.3}px)`,
-          transition: 'transform 0.1s ease-out',
-        }}
-      >
-        <div className="absolute inset-0 bg-background/70"></div>
+    <section
+      id="hero"
+      className="relative min-h-[100dvh] pt-24 pb-16 flex items-center overflow-hidden"
+    >
+      {/* Subtle gradient background — no fixed attachment */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
+        {/* Decorative gradient orb */}
+        <div
+          className="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full opacity-[0.04] blur-3xl pointer-events-none"
+          style={{ background: 'radial-gradient(circle, var(--accent) 0%, transparent 70%)' }}
+        />
       </div>
 
-      <div className="container relative z-10 py-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center" ref={contentRef}>
-          <div className={`max-w-2xl transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 hexagon bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">SD</span>
-              </div>
-              <span className="text-2xl font-bold text-primary">SantanaDev</span>
-            </div>
-            
-            <h1 className="text-primary mb-6 leading-tight text-6xl md:text-8xl">
-              Desarrollo Web de <br />
-              <span className="text-gradient">Clase Mundial</span>
+      <div className="container relative z-10">
+        <div className="grid md:grid-cols-[1.4fr_1fr] gap-12 md:gap-16 items-center">
+          {/* Left — Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: 'spring', stiffness: 80, damping: 20, delay: 0.1 }}
+            className="max-w-2xl"
+          >
+            <motion.span
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="section-label"
+            >
+              Desarrollador Web Full Stack
+            </motion.span>
+
+            <h1 className="mb-6 leading-[1.05]">
+              Desarrollo Web de{' '}
+              <br className="hidden sm:block" />
+              <span className="text-accent">Clase Mundial</span>
             </h1>
-            
-            <p className="text-lg md:text-xl text-foreground mb-8 leading-relaxed max-w-xl font-bold [text-shadow:_0_1px_2px_rgba(0,0,0,0.1)]">
-              Transformo ideas en soluciones digitales innovadoras. Especializado en crear experiencias web modernas, 
-              responsivas y de alto rendimiento que impulsan el crecimiento de tu negocio.
+
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl font-medium">
+              Transformo ideas en soluciones digitales que funcionan. Especializado en crear
+              experiencias web modernas, responsivas y de alto rendimiento.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <button 
+            <div className="flex flex-col sm:flex-row gap-3 mb-12">
+              <button
                 onClick={() => onNavigate('services')}
-                className="px-8 py-3 bg-primary text-primary-foreground rounded-sm font-semibold hover:bg-secondary transition-all duration-300 hover-lift flex items-center gap-2 justify-center sm:justify-start"
+                className="px-7 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover-tactile flex items-center gap-2 justify-center sm:justify-start"
               >
                 Ver Servicios
-                <ArrowRight size={20} />
+                <ArrowRight size={18} weight="bold" />
               </button>
-              
-              <button 
-                onClick={() => onNavigate('portfolio')}
-                className="px-8 py-3 border-2 border-primary text-primary rounded-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2 justify-center sm:justify-start"
+
+              <button
+                onClick={() => onNavigate('portafolio')}
+                className="px-7 py-3 border-2 border-primary/20 text-primary rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2 justify-center sm:justify-start"
               >
                 Ver Portafolio
               </button>
             </div>
-          </div>
 
-          <div className={`hidden md:flex justify-center items-center transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
-            <div className="relative w-80 h-80">
-              {/* Outer Hexagon Border */}
-              <div className="absolute inset-0 hexagon border-4 border-primary/30"></div>
-              
-              {/* Inner Circle Container */}
-              <div className="absolute inset-8 rounded-full overflow-hidden border-2 border-primary shadow-2xl">
-                {/* Personal Photo */}
-                <div 
-                  className="w-full h-full"
-                  style={{
-                    backgroundImage: 'url(/image3.png)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                  }}
+            {/* Compact metrics */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, type: 'spring', stiffness: 80, damping: 20 }}
+              className="flex gap-8 text-sm"
+            >
+              <div>
+                <span className="text-2xl font-extrabold text-primary block" style={{ fontFamily: "'Georama', system-ui" }}>4+</span>
+                <span className="text-muted-foreground font-medium">Proyectos Entregados</span>
+              </div>
+              <div className="w-px bg-border" />
+              <div>
+                <span className="text-2xl font-extrabold text-primary block" style={{ fontFamily: "'Georama', system-ui" }}>2+</span>
+                <span className="text-muted-foreground font-medium">Años de Experiencia</span>
+              </div>
+              <div className="w-px bg-border" />
+              <div>
+                <span className="text-2xl font-extrabold text-primary block" style={{ fontFamily: "'Georama', system-ui" }}>100%</span>
+                <span className="text-muted-foreground font-medium">Clientes Satisfechos</span>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right — Photo */}
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: 'spring', stiffness: 80, damping: 20, delay: 0.3 }}
+            className="hidden md:flex justify-center items-center"
+          >
+            <div className="relative w-[340px] h-[420px]">
+              {/* Photo container */}
+              <div className="w-full h-full rounded-[2rem] overflow-hidden shadow-[0_24px_64px_-16px] shadow-primary/15">
+                <img
+                  src="/image3.png"
+                  alt="Mauricio Lopez - Desarrollador Web Full Stack"
+                  className="w-full h-full object-cover"
+                  loading="eager"
                 />
-                
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20"></div>
+                {/* Subtle gradient overlay at bottom */}
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/30 to-transparent" />
               </div>
 
-              {/* Decorative Hexagons */}
-              <div className="absolute -top-6 -right-6 w-20 h-20 hexagon bg-primary/10 animate-float"></div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 hexagon bg-secondary/10 animate-float" style={{ animationDelay: '1s' }}></div>
-
-              {/* Circuit Lines */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320" style={{ filter: 'drop-shadow(0 0 10px rgba(26, 95, 95, 0.2))' }}>
-                <defs>
-                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2d8a8a" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#1a5f5f" stopOpacity="0.1" />
-                  </linearGradient>
-                </defs>
-                
-                {/* Top connecting line */}
-                <line x1="160" y1="0" x2="160" y2="40" stroke="url(#lineGradient)" strokeWidth="2" />
-                
-                {/* Right connecting line */}
-                <line x1="280" y1="160" x2="320" y2="160" stroke="url(#lineGradient)" strokeWidth="2" />
-                
-                {/* Bottom connecting line */}
-                <line x1="160" y1="280" x2="160" y2="320" stroke="url(#lineGradient)" strokeWidth="2" />
-                
-                {/* Left connecting line */}
-                <line x1="0" y1="160" x2="40" y2="160" stroke="url(#lineGradient)" strokeWidth="2" />
-                
-                {/* Diagonal lines */}
-                <line x1="60" y1="60" x2="100" y2="100" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.5" />
-                <line x1="260" y1="60" x2="220" y2="100" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.5" />
-                <line x1="60" y1="260" x2="100" y2="220" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.5" />
-                <line x1="260" y1="260" x2="220" y2="220" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.5" />
-                
-                {/* Connection nodes */}
-                <circle cx="160" cy="40" r="4" fill="#2d8a8a" opacity="0.6" />
-                <circle cx="280" cy="160" r="4" fill="#2d8a8a" opacity="0.6" />
-                <circle cx="160" cy="280" r="4" fill="#2d8a8a" opacity="0.6" />
-                <circle cx="40" cy="160" r="4" fill="#2d8a8a" opacity="0.6" />
-              </svg>
+              {/* Floating accent card */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, type: 'spring', stiffness: 100, damping: 20 }}
+                className="absolute -bottom-4 -left-6 bg-card border border-border rounded-xl px-5 py-3 shadow-lg"
+              >
+                <span className="text-xs text-muted-foreground font-medium block">Especializado en</span>
+                <span className="text-sm font-bold text-primary">React, Next.js & Node.js</span>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-
-      <div className="absolute top-20 right-10 w-32 h-32 hexagon bg-primary/10 animate-float"></div>
-      <div className="absolute bottom-32 left-10 w-24 h-24 hexagon bg-secondary/10 animate-float" style={{ animationDelay: '1s' }}></div>
     </section>
   );
 }

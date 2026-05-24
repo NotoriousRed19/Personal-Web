@@ -1,84 +1,107 @@
-import { useInView } from '@/hooks/useInView';
+import { motion, type Variants } from 'framer-motion';
 
 interface AboutProps {
   onNavigate: (section: string) => void;
 }
 
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 20 } },
+};
+
+const features = [
+  {
+    title: 'Desarrollo Full-Stack',
+    description: 'Frontend y backend con tecnologías modernas para productos completos.',
+  },
+  {
+    title: 'Diseño Responsivo',
+    description: 'Interfaces que funcionan en todos los dispositivos sin compromisos.',
+  },
+  {
+    title: 'Rendimiento Optimizado',
+    description: 'Sitios web rápidos que mejoran la experiencia y el posicionamiento.',
+  },
+];
+
 export default function About({ onNavigate }: AboutProps) {
-  const { ref, isInView } = useInView();
-
   return (
-    <section id="about" className="py-20 md:py-32 bg-card relative overflow-hidden" ref={ref}>
-      {/* Decorative Elements */}
-      <div className="absolute top-10 right-5 w-40 h-40 hexagon bg-primary/5 -z-10"></div>
-      <div className="absolute bottom-10 left-5 w-32 h-32 hexagon bg-secondary/5 -z-10"></div>
-
+    <section id="about" className="py-24 md:py-36 bg-card relative overflow-hidden">
       <div className="container">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          
-          <div className={`relative transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
-            <div className="rounded-lg overflow-hidden shadow-lg aspect-square">
-              <img 
+        <div className="grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20 items-center">
+
+          {/* Left — Image with offset */}
+          <motion.div
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ type: 'spring', stiffness: 80, damping: 20 }}
+            className="relative"
+          >
+            <div className="rounded-2xl overflow-hidden shadow-[0_20px_48px_-16px] shadow-primary/10 aspect-[4/5]">
+              <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663409405171/FQnTAk3vp2KaZTa5XVsb5j/about-developer-WFxzsqYWgk77zhd36wUk2C.webp"
                 alt="Mauricio Lopez - Desarrollador Web Full Stack trabajando en su entorno"
                 loading="lazy"
                 width="800"
-                height="800"
+                height="1000"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 hexagon bg-primary/20 -z-10"></div>
-          </div>
+            {/* Decorative accent line */}
+            <div className="absolute -bottom-3 left-6 right-6 h-1 bg-accent/20 rounded-full" />
+          </motion.div>
 
-          <div className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
-            <span className="section-label">Sobre Mí</span>
-            <h2 className="text-primary mb-6">Mi Enfoque</h2>
-            
-            <p className="text-lg text-foreground mb-6 leading-relaxed">
-              Soy un desarrollador web apasionado con más de 2 años de experiencia creando soluciones digitales 
-              innovadoras. Mi enfoque combina tecnología de punta con diseño centrado en el usuario para entregar 
-              resultados excepcionales.
-            </p>
+          {/* Right — Content */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <motion.span variants={fadeInUp} className="section-label">Sobre Mí</motion.span>
+            <motion.h2 variants={fadeInUp} className="mb-6">Mi Enfoque</motion.h2>
 
-            <p className="text-lg text-foreground mb-8 leading-relaxed">
-              Especializado en arquitecturas modernas, he trabajado con empresas de todos los tamaños, desde startups 
-              hasta corporaciones Fortune 500. Mi misión es transformar desafíos técnicos complejos en soluciones 
-              elegantes y escalables.
-            </p>
+            <motion.p variants={fadeInUp} className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Soy un desarrollador web con más de 2 años de experiencia creando soluciones digitales
+              que resuelven problemas reales. Mi enfoque combina tecnología actual con diseño centrado
+              en el usuario para entregar resultados que importan.
+            </motion.p>
 
-            <div className="space-y-4 mb-8">
-              <div className={`flex items-start gap-4 transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: '0.2s' }}>
-                <div className="w-6 h-6 hexagon bg-primary flex-shrink-0 mt-1"></div>
-                <div>
-                  <h4 className="font-bold text-primary mb-1">Desarrollo Full-Stack</h4>
-                  <p className="text-foreground">Experto en frontend y backend con tecnologías modernas</p>
+            <motion.p variants={fadeInUp} className="text-lg text-muted-foreground mb-10 leading-relaxed">
+              He trabajado con empresas de distintos tamaños y sectores, desde startups hasta
+              corporaciones. Mi misión es transformar desafíos técnicos complejos en soluciones
+              funcionales y escalables.
+            </motion.p>
+
+            {/* Features — border-l accent indicators */}
+            <motion.div variants={fadeInUp} className="space-y-5 mb-10">
+              {features.map((feature) => (
+                <div
+                  key={feature.title}
+                  className="pl-5 border-l-2 border-accent/40 hover:border-accent transition-colors duration-300"
+                >
+                  <h4 className="font-bold text-primary mb-1 text-base">{feature.title}</h4>
+                  <p className="text-muted-foreground text-sm">{feature.description}</p>
                 </div>
-              </div>
+              ))}
+            </motion.div>
 
-              <div className={`flex items-start gap-4 transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: '0.4s' }}>
-                <div className="w-6 h-6 hexagon bg-secondary flex-shrink-0 mt-1"></div>
-                <div>
-                  <h4 className="font-bold text-primary mb-1">Diseño Responsivo</h4>
-                  <p className="text-foreground">Interfaces que funcionan perfectamente en todos los dispositivos</p>
-                </div>
-              </div>
-
-              <div className={`flex items-start gap-4 transition-all duration-700 ${isInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: '0.6s' }}>
-                <div className="w-6 h-6 hexagon bg-primary flex-shrink-0 mt-1"></div>
-                <div>
-                  <h4 className="font-bold text-primary mb-1">Optimización de Rendimiento</h4>
-                  <p className="text-foreground">Sitios web rápidos y eficientes que mejoran la experiencia del usuario</p>
-                </div>
-              </div>
-            </div>
-
-            <button 
+            <motion.button
+              variants={fadeInUp}
               onClick={() => onNavigate('services')}
-              className="px-8 py-3 bg-primary text-primary-foreground rounded-sm font-semibold hover:bg-secondary transition-all duration-300 hover-lift"
+              className="px-7 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover-tactile"
             >
               Descubre Mis Servicios
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </div>
     </section>

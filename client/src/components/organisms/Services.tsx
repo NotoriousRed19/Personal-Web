@@ -1,4 +1,4 @@
-import { useInView } from '@/hooks/useInView';
+import { motion, type Variants } from 'framer-motion';
 import { services } from '@/data/services';
 import ServiceCard from '@/components/molecules/ServiceCard';
 
@@ -6,45 +6,75 @@ interface ServicesProps {
   onNavigate: (section: string) => void;
 }
 
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12 },
+  },
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 20 } },
+};
+
 export default function Services({ onNavigate }: ServicesProps) {
-  const { ref, isInView } = useInView();
-
   return (
-    <section id="services" className="py-20 md:py-32 bg-background relative overflow-hidden" ref={ref}>
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-40 h-40 hexagon bg-primary/5 -z-10"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 hexagon bg-secondary/5 -z-10"></div>
-
+    <section id="services" className="py-24 md:py-36 bg-background relative overflow-hidden">
       <div className="container">
-        <div className={`text-center mb-16 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* Header — left-aligned per LAYOUT_VARIANCE 8 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ type: 'spring', stiffness: 80, damping: 20 }}
+          className="mb-16 max-w-xl"
+        >
           <span className="section-label">Servicios</span>
-          <h2 className="text-primary mb-4">Lo Que Hago Mejor</h2>
-          <p className="text-lg text-foreground max-w-2xl mx-auto">
-            Ofrezco una gama completa de servicios de desarrollo web para llevar tu proyecto al siguiente nivel.
+          <h2 className="mb-4">Lo Que Hago Mejor</h2>
+          <p className="text-lg text-muted-foreground">
+            Servicios completos de desarrollo web para llevar tu proyecto al siguiente nivel.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard 
-              key={service.id} 
-              service={service} 
-              isInView={isInView} 
-              delay={index * 0.15} 
+        {/* Grid — symmetrical 2x2 grid for clean visual balance */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid md:grid-cols-2 gap-4 md:gap-5"
+        >
+          {services.map((service) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              isLarge={false}
+              variants={fadeInUp}
             />
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="mt-16 text-center animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <p className="text-lg text-foreground mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, type: 'spring', stiffness: 80, damping: 20 }}
+          className="mt-16 flex flex-col items-center justify-center text-center"
+        >
+          <p className="text-lg text-foreground font-semibold mb-6">
             ¿Listo para comenzar tu proyecto?
           </p>
-          <a href="https://wa.me/+584246270071?text=Hola%20Mauricio%20quiero%20solicitar%20un%20presupuesto!" target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 bg-primary text-primary-foreground rounded-sm font-bold text-lg hover:bg-secondary transition-all duration-300 hover-lift">
+          <a
+            href="https://wa.me/+584246270071?text=Hola%20Mauricio%20quiero%20solicitar%20un%20presupuesto!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-3.5 bg-primary text-primary-foreground rounded-lg font-bold text-base hover-tactile"
+          >
             Solicitar Presupuesto
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
