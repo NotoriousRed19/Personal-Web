@@ -16,7 +16,7 @@ export const projects = [
     link: 'https://tefaltacalle.vercel.app/',
   },
   {
-    title: 'Cognify (Under Construction)',
+    title: 'Cognify (On sale)',
     description: 'SaaS de gestión integral para profesionales de la salud mental. Simplifica la administración de citas, expedientes y seguimiento de pacientes en una plataforma segura y moderna.',
     tags: ['Next.js', 'React', 'Tailwind', 'Supabase'],
     image: '/screenshots/cognify_hero.png',
@@ -24,11 +24,11 @@ export const projects = [
     link: 'https://cognify-orpin.vercel.app/',
   },
   {
-    title: 'RestKardex (Sistema de gestion de inventarios)',
+    title: 'RestKardex DEMO (Sistema de gestion de inventarios) (On sale)',
     description: 'Sistema integral de gestión de inventarios para restaurantes. Control de stock, estandarización de recetas, mermas y costeo en tiempo real. Plataforma escalable, modificable y disponible para venta.',
     tags: ['React', 'Next.js', 'Tailwind', 'Supabase'],
     image: '/screenshots/restkardex_hero.png',
     catalogImage: '/screenshots/restkardex_catalog.png',
-    link: 'https://rest-kardex-5m4z.vercel.app/',
+    link: 'https://rest-kardex-demo.vercel.app/login',
   },
 ];
