@@ -117,7 +117,7 @@ export default function Navigation({ onNavigate }: NavigationProps) {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05, type: 'spring', stiffness: 200, damping: 20 }}
                   onClick={() => handleNavClick(item.id)}
-                  className="text-left px-4 py-2.5 text-foreground hover:bg-muted/50 rounded-lg transition-colors font-medium"
+                  className="w-full block text-left px-4 py-2.5 text-foreground hover:bg-muted/50 rounded-lg transition-colors font-medium"
                 >
                   {item.label}
                 </motion.button>

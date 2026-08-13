@@ -31,4 +31,12 @@ export const projects = [
     catalogImage: '/screenshots/restkardex_catalog.png',
     link: 'https://rest-kardex-demo.vercel.app/login',
   },
+  {
+    title: 'Rifazo (On sale)',
+    description: 'Sistema de Rifas en Línea – Plantilla Premium. ¿Qué es?: Modelo web totalmente desplegado y listo para comercializar. Una solución llave en mano para sorteos masivos y venta de boletos digitales.',
+    tags: ['React', 'Next.js', 'Tailwind', 'Supabase'],
+    image: '/screenshots/rifazo_hero.png',
+    catalogImage: '/screenshots/rifazo_catalog.png',
+    link: 'https://rifazo-three.vercel.app/',
+  },
 ];
